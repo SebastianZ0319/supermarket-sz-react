@@ -139,7 +139,7 @@ function App() {
 
    <PanelCarrito carrito={carrito} />
     
-    <BarraTotal/>
+    <BarraTotal carrito={carrito} />
     </>
   )
 }
