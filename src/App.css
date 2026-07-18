@@ -1,0 +1,274 @@
+/* ------------------ RESET ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ------------------ GENERAL ------------------ */
+body {
+  background: #f5f7f5;
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2 {
+  margin: 10px 0;
+}
+
+/* ------------------ HEADER ------------------ */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3a6645;
+  padding: 12px 24px;
+}
+
+#header h1 {
+  color: #e8f0e9;
+}
+
+.hero {
+  background: #e8f0e9;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #c4d9c6;
+}
+
+.hero h2 {
+  color: #3a6645;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.hero p {
+  color: #5c8a67;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+#abrirPanel {
+  cursor: pointer;
+  background: #5c8a67;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #e8f0e9;
+  border: none;
+  font-size: 15px;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ------------------ FOOTERBAR ------------------ */
+
+#barraTotal {
+  background: #3a6645;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #e8f0e9;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1001;
+}
+
+/* ------------------ MAIN ------------------ */
+
+#lista {
+  flex: 1;
+}
+
+/* ------------------ PRODUCTOS ------------------ */
+#myProducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 20px;
+}
+
+.info {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #c4d9c6;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#panelCarrito .info {
+  width: 45%;
+  padding: 10px;
+  border: 2px solid #c4d9c6;
+  background: #f5f7f5;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#totalCarrito {
+  background: #e8f0e9;
+  border-top: 1px solid #c4d9c6;
+  padding: 10px;
+  margin-top: auto;
+  text-align: center;
+  color: #3a6645;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.imagenes {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.imagenesCarrito {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+/* ------------------ CARRITO ------------------ */
+#canasta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 15px;
+}
+
+/* Panel lateral */
+#panelCarrito {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 350px;
+  height: 100vh;
+
+  background: #f5f7f5;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+
+  display: none;
+  flex-direction: column;
+
+  overflow-y: auto;
+  z-index: 1000;
+
+  padding: 10px 24px;
+}
+
+#panelCarrito h2 {
+  color: #3a6645;
+  border-bottom: 1px solid #a8c4ab;
+}
+/* ------------------ BOTONES ------------------ */
+.agregar,
+.borrarcarrito,
+.eliminar,
+.agotado {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.agregar {
+  background: #4caf50;
+}
+
+.agregar:hover {
+  background: #388e3c;
+}
+
+.borrarcarrito,
+.eliminar {
+  background: #f44336;
+}
+
+.borrarcarrito:hover,
+.eliminar:hover {
+  background: #b71c1c;
+}
+
+.agotado {
+  background: gray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.agotado:hover {
+  background: gray;
+}
+
+#cerrarCarrito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+/* ------------------ CONTADOR ------------------ */
+#tProductos {
+  color: #e8f5e9;
+}
+
+#contador {
+  color: #e8f5e9;
+}
+
+.contraido {
+  margin-right: 350px;
+}
+
+.footerContraido {
+  width: calc(100% - 350px);
+}
+
+.card-img {
+  width: 95px;
+  height: 95px;
+  background: #e8f0e9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #2c2c2c;
+}
+
+.card-price {
+  font-size: 12px;
+  color: #5c8a67;
+  font-weight: 500;
+}
+
+.Pagar {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 50%;
+  margin-left: 10px;
+}
+
+.Pagar:hover {
+  background: #388e3c;
+}
