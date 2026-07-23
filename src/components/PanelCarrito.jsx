@@ -4,7 +4,7 @@ import { precioCop } from "../utils/preciCop"
 
 
 
-function PanelCarrito({ carrito }) {
+function PanelCarrito({ carrito, eliminarDelCarrito }) {
 
     const total = carrito.reduce((acomulador, item) =>{
 
@@ -21,6 +21,8 @@ function PanelCarrito({ carrito }) {
       <span className="card-price">
         {precioCop.format(item.precio * item.cantidad)} x{item.cantidad}
       </span>
+
+      <button onClick={() => eliminarDelCarrito(item.id)} className="eliminar">Eliminar</button>
     </li>))}
   </ul>
 

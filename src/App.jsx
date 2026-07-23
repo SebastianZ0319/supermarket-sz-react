@@ -126,6 +126,26 @@ function App() {
            setCarrito([...carrito, nuevoItem])
         }
     }
+
+    function eliminarDelCarrito(id) {
+      const item = carrito.find((item)=> item.id === id)
+
+     if (item.cantidad > 1) {
+      const nuevoCarrito = carrito.map((item) =>{
+        if (item.id === id) {
+          return {
+            ...item, cantidad: item.cantidad - 1}
+        } else{
+          return item
+        }
+      })
+      setCarrito(nuevoCarrito)
+     } else {
+      const nuevoCarrito = carrito.filter((item) => item.id !== id)
+
+      setCarrito(nuevoCarrito)
+     }
+    }
   
   return (
     <>
@@ -134,12 +154,12 @@ function App() {
 
    <Hero/>
 
-   <ProductList productos={productos} agregarAlCarrito={agregarAlCarrito}/>
+   <ProductList productos = {productos} agregarAlCarrito = {agregarAlCarrito}/>
 
 
-   <PanelCarrito carrito={carrito} />
+   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} />
     
-    <BarraTotal carrito={carrito} />
+    <BarraTotal carrito = {carrito} />
     </>
   )
 }
