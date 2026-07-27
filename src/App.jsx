@@ -147,17 +147,22 @@ function App() {
      }
     }
   
+
+    const [panelAbierto,setPanelAbierto] = useState(false)
+    function togglePanel() {
+      setPanelAbierto(!panelAbierto)
+    }
   return (
     <>
    
-   <Header/>
+   <Header togglePanel = {togglePanel} />
 
    <Hero/>
 
    <ProductList productos = {productos} agregarAlCarrito = {agregarAlCarrito}/>
 
 
-   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} />
+   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} panelAbierto ={panelAbierto} />
     
     <BarraTotal carrito = {carrito} />
     </>

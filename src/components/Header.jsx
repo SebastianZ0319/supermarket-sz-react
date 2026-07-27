@@ -1,9 +1,9 @@
-function Header() {
+function Header( {togglePanel} ) {
     return(
 
         <div id="header">
       <h1>Supermarket SZ</h1>
-      <button id="abrirPanel">🛒 Carrito</button>
+      <button id="abrirPanel" onClick={() => {togglePanel()} } >🛒 Carrito</button>
     </div>
       
     )
