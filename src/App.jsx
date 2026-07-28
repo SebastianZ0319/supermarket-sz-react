@@ -146,11 +146,20 @@ function App() {
       setCarrito(nuevoCarrito)
      }
     }
-  
 
+
+    function borrarCarrito () {
+    setCarrito([])
+    }
+  
     const [panelAbierto,setPanelAbierto] = useState(false)
     function togglePanel() {
       setPanelAbierto(!panelAbierto)
+    }
+
+    function cerrarPanel() {
+      setPanelAbierto(false)
+      
     }
   return (
     <>
@@ -162,7 +171,7 @@ function App() {
    <ProductList productos = {productos} agregarAlCarrito = {agregarAlCarrito}/>
 
 
-   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} panelAbierto ={panelAbierto} />
+   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} panelAbierto ={panelAbierto} cerrarPanel={cerrarPanel}  borrarCarrito={borrarCarrito} />
     
     <BarraTotal carrito = {carrito} />
     </>
