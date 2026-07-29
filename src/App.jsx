@@ -107,7 +107,9 @@ function App() {
       const nuevoCarrito = carrito.map((item) =>{
         if (item.id === producto.id) {
           return {
-            ...item, cantidad: item.cantidad + 1}
+            ...item, cantidad: item.cantidad + 1,
+          }
+          
         } else{
           return item
         }
@@ -122,9 +124,21 @@ function App() {
                 cantidad: 1,
                imagen: producto.imagen
               })   
-
+              
            setCarrito([...carrito, nuevoItem])
         }
+        const nuevoProductos = productos.map((item) =>{
+            if (item.id === producto.id) {
+          return {
+            ...item, stock: item.stock - 1,
+          }
+          
+        } else{
+          return item
+        }
+      })
+      setProductos (nuevoProductos)
+
     }
 
     function eliminarDelCarrito(id) {

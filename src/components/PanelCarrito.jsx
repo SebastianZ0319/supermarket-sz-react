@@ -29,7 +29,8 @@ function PanelCarrito({ carrito, eliminarDelCarrito, panelAbierto, cerrarPanel, 
       <div id="totalCarrito"> {precioCop.format(total)}</div>
 
       <div id="botonBorrarTodo" >
-        <button id="borrarTodo" className="borrarcarrito" onClick={() => borrarCarrito()}> Vaciar carrito</button>
+        <button id="borrarTodo" className="borrarcarrito" onClick={() => borrarCarrito()}> 
+          Vaciar carrito</button>
       </div>
 
       <div id="cerrarCarrito">
