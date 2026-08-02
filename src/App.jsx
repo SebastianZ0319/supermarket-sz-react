@@ -159,11 +159,36 @@ function App() {
 
       setCarrito(nuevoCarrito)
      }
+
+     const devolverStock = productos.map((item) =>{
+            if (item.id === id) {
+          return {
+            ...item, stock: item.stock + 1,
+          }
+          
+        } else{
+          return item
+        }
+      })
+      setProductos (devolverStock)
     }
 
 
     function borrarCarrito () {
-    setCarrito([])
+     const devolverStock = productos.map((item) =>{
+     const idProductos = carrito.find ((i) =>  i.id === item.id )
+          if (idProductos) {
+          return {
+            ...item, stock: item.stock + idProductos.cantidad,
+          }
+          
+        } else{
+          return item 
+      }  
+      })
+      setProductos (devolverStock)
+
+      setCarrito([])
     }
   
     const [panelAbierto,setPanelAbierto] = useState(false)
