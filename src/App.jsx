@@ -1,6 +1,6 @@
 
 import './App.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import BarraTotal from './components/BarraTotal'
 import Header from './components/Header'
 import PanelCarrito from './components/PanelCarrito'
@@ -13,8 +13,13 @@ import ProductCard from './components/ProductCard'
 
 function App() {
 
-  const [productos, setProductos] = useState([
-    {
+ const [productos, setProductos] = useState(() => {
+  const guardado = localStorage.getItem('productos')
+  if (guardado) {
+    return JSON.parse(guardado)
+  } else {
+    return [
+      {
     id: 1,
     nombre: 'Caco-cacola',
     precio: 4500,
@@ -98,9 +103,20 @@ function App() {
     stock: 2,
     imagen: 'Fotos/salchichas.png'
   }
-  ])
+    ]
+  }
+})
+    
 
-  const [carrito, setCarrito] = useState([])
+  const [carrito, setCarrito] = useState(() => {
+  const guardado = localStorage.getItem('carrito')
+  if (guardado) {
+    return JSON.parse(guardado)
+  } else {
+    return []
+  }
+})
+
   function agregarAlCarrito(producto) {
     const productoAgregado = carrito.find((item) => item.id === producto.id)
     if (productoAgregado) {
@@ -198,8 +214,15 @@ function App() {
 
     function cerrarPanel() {
       setPanelAbierto(false)
-      
     }
+
+    useEffect(() =>{
+      localStorage.setItem('productos', JSON.stringify(productos))
+    },[productos])
+
+    useEffect(() =>{
+      localStorage.setItem('carrito', JSON.stringify(carrito) )
+    },[carrito])
   return (
     <>
    
