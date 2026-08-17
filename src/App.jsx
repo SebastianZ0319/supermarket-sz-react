@@ -7,6 +7,7 @@ import PanelCarrito from './components/PanelCarrito'
 import Hero from './components/Hero'
 import ProductList from './components/ProductList'
 import ProductCard from './components/ProductCard'
+import { Toaster,toast } from 'sonner'
 
 
 
@@ -154,6 +155,7 @@ function App() {
         }
       })
       setProductos (nuevoProductos)
+      toast.success(`Agregaste ${producto.nombre} al carrito`)
 
     }
 
@@ -187,6 +189,7 @@ function App() {
         }
       })
       setProductos (devolverStock)
+      toast.info(`Eliminaste ${item.nombre} del carrito`)
     }
 
 
@@ -205,6 +208,8 @@ function App() {
       setProductos (devolverStock)
 
       setCarrito([])
+      toast.info(`Eliminaste toda tu compra`)
+
     }
   
     const [panelAbierto,setPanelAbierto] = useState(false)
@@ -225,7 +230,7 @@ function App() {
     },[carrito])
   return (
     <>
-   
+   <Toaster/>
    <Header togglePanel = {togglePanel} />
 
    <Hero/>
