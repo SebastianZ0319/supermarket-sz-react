@@ -4,7 +4,7 @@ import { precioCop } from "../utils/preciCop"
 
 
 
-function PanelCarrito({ carrito, eliminarDelCarrito, panelAbierto, cerrarPanel, borrarCarrito }) {
+function PanelCarrito({ carrito, eliminarDelCarrito, panelAbierto, cerrarPanel, borrarCarrito,pagar }) {
 
     const total = carrito.reduce((acomulador, item) =>{
 
@@ -31,6 +31,8 @@ function PanelCarrito({ carrito, eliminarDelCarrito, panelAbierto, cerrarPanel, 
       <div id="botonBorrarTodo" >
         <button id="borrarTodo" className="borrarcarrito" onClick={() => borrarCarrito()}> 
           Vaciar carrito</button>
+
+          <button id="pagar" className="Pagar" onClick={() => pagar()} >Pagar</button>
       </div>
 
       <div id="cerrarCarrito">

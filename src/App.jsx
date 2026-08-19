@@ -221,6 +221,10 @@ function App() {
       setPanelAbierto(false)
     }
 
+    function pagar(){
+      toast.success('Compra exitosa')
+    }
+
     useEffect(() =>{
       localStorage.setItem('productos', JSON.stringify(productos))
     },[productos])
@@ -238,7 +242,7 @@ function App() {
    <ProductList productos = {productos} agregarAlCarrito = {agregarAlCarrito}/>
 
 
-   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} panelAbierto ={panelAbierto} cerrarPanel={cerrarPanel}  borrarCarrito={borrarCarrito} />
+   <PanelCarrito carrito = {carrito} eliminarDelCarrito = {eliminarDelCarrito} panelAbierto ={panelAbierto} cerrarPanel={cerrarPanel}  borrarCarrito={borrarCarrito} pagar={pagar}/>
     
     <BarraTotal carrito = {carrito} />
     </>
