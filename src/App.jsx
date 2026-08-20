@@ -63,6 +63,12 @@ function App() {
         }
       })
       setProductos (nuevoProductos)
+
+      fetch(`http://localhost:3000/productos/${producto.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stock: producto.stock - 1 })
+       })
       toast.success(`Agregaste ${producto.nombre} al carrito`)
 
     }
@@ -97,6 +103,15 @@ function App() {
         }
       })
       setProductos (devolverStock)
+
+         const productoActual = productos.find((p) => p.id === id)
+
+      fetch(`http://localhost:3000/productos/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stock: productoActual.stock + 1 })
+       })
+
       toast.info(`Eliminaste ${item.nombre} del carrito`)
     }
 
@@ -105,10 +120,12 @@ function App() {
      const devolverStock = productos.map((item) =>{
      const idProductos = carrito.find ((i) =>  i.id === item.id )
           if (idProductos) {
-          return {
-            ...item, stock: item.stock + idProductos.cantidad,
-          }
-          
+          fetch(`http://localhost:3000/productos/${item.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stock: item.stock + idProductos.cantidad})
+       })
+         return { ...item, stock: item.stock + idProductos.cantidad } 
         } else{
           return item 
       }  
@@ -116,6 +133,7 @@ function App() {
       setProductos (devolverStock)
 
       setCarrito([])
+
       toast.info(`Eliminaste toda tu compra`)
 
     }
