@@ -14,99 +14,7 @@ import { Toaster,toast } from 'sonner'
 
 function App() {
 
- const [productos, setProductos] = useState(() => {
-  const guardado = localStorage.getItem('productos')
-  if (guardado) {
-    return JSON.parse(guardado)
-  } else {
-    return [
-      {
-    id: 1,
-    nombre: 'Caco-cacola',
-    precio: 4500,
-    stock: 5,
-    imagen: 'Fotos/coca-cola.png'
-  },
-  {
-    id: 2,
-    nombre: 'Doritos',
-    precio: 8000,
-    stock: 3,
-    imagen: 'Fotos/doritos.png'
-  },
-  {
-    id: 3,
-    nombre: 'Gomitas',
-    precio: 2000,
-    stock: 6,
-    imagen: 'Fotos/gomitas.png'
-  },
-  {
-    id: 4,
-    nombre: 'Papel',
-    precio: 3000,
-    stock: 1,
-    imagen: 'Fotos/papel.png'
-  },
-  {
-    id: 5,
-    nombre: 'Cafe',
-    precio: 9000,
-    stock: 2,
-    imagen: 'Fotos/cafe.png'
-  },
-  {
-    id: 6,
-    nombre: 'Jabon',
-    precio: 18000,
-    stock: 7,
-    imagen: 'Fotos/jabon_loza.png'
-  },
-  {
-    id: 7,
-    nombre: 'Crema dental',
-    precio: 15000,
-    stock: 4,
-    imagen: 'Fotos/crema_dental.png'
-  },
-  {
-    id: 8,
-    nombre: 'Leche',
-    precio: 5000,
-    stock: 8,
-    imagen: 'Fotos/leche.png'
-  },
-  {
-    id: 9,
-    nombre: 'Arroz',
-    precio: 12000,
-    stock: 10,
-    imagen: 'Fotos/arroz.png'
-  },
-  {
-    id: 10,
-    nombre: 'pasta',
-    precio: 7000,
-    stock: 5,
-    imagen: 'Fotos/pasta.png'
-  },
-  {
-    id: 11,
-    nombre: 'Atun',
-    precio: 6000,
-    stock: 3,
-    imagen: 'Fotos/atun.png'
-  },
-  {
-    id: 12,
-    nombre: 'Salchichas',
-    precio: 8000,
-    stock: 2,
-    imagen: 'Fotos/salchichas.png'
-  }
-    ]
-  }
-})
+ const [productos, setProductos] = useState([])
     
 
   const [carrito, setCarrito] = useState(() => {
@@ -225,9 +133,18 @@ function App() {
       toast.success('Compra exitosa')
     }
 
-    useEffect(() =>{
+    /*useEffect(() =>{
       localStorage.setItem('productos', JSON.stringify(productos))
-    },[productos])
+    },[productos])*/
+
+
+    useEffect(() => {
+  fetch('http://localhost:3000/productos')
+    .then((respuesta) => respuesta.json())
+    .then((datos) => {
+      setProductos(datos)
+    })
+}, [])
 
     useEffect(() =>{
       localStorage.setItem('carrito', JSON.stringify(carrito) )
