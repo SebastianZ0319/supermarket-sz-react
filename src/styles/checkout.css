@@ -81,8 +81,8 @@
 
 .metodo.activo {
   border-color: var(--color-primario);
-  background: var(--verde-50);
-  color: var(--verde-700);
+  background: var(--marca-50);
+  color: var(--marca-700);
 }
 
 .metodo input {
@@ -92,7 +92,7 @@
 }
 
 .metodo:has(input:focus-visible) {
-  outline: 3px solid var(--verde-200);
+  outline: 3px solid var(--marca-200);
   outline-offset: 2px;
 }
 

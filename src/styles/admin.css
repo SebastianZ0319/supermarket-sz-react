@@ -37,8 +37,8 @@
   height: 56px;
   margin-top: var(--e-4);
   border-radius: var(--r-full);
-  background: var(--verde-50);
-  color: var(--verde-700);
+  background: var(--marca-50);
+  color: var(--marca-700);
 }
 
 .admin {
@@ -255,7 +255,7 @@
   place-items: center;
   aspect-ratio: 1;
   border-radius: var(--r-md);
-  background: linear-gradient(160deg, var(--verde-50), var(--tinta-100));
+  background: linear-gradient(160deg, var(--marca-50), var(--tinta-100));
 }
 
 .form-producto-preview img {
@@ -357,13 +357,13 @@
 }
 
 .estado-pendiente { background: var(--naranja-50); color: var(--naranja-600); }
-.estado-enviado { background: #e6f0ff; color: #2563eb; }
-.estado-entregado { background: var(--verde-50); color: var(--verde-700); }
+.estado-enviado { background: #f3e8ff; color: #7e22ce; }
+.estado-entregado { background: var(--marca-50); color: var(--marca-700); }
 .estado-cancelado { background: var(--tinta-100); color: var(--tinta-500); }
 
 :root[data-tema="oscuro"] .estado-enviado {
-  background: #172540;
-  color: #8db4ff;
+  background: #2a1840;
+  color: #d8b4fe;
 }
 
 @media (max-width: 640px) {

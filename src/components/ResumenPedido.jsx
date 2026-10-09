@@ -13,7 +13,7 @@ function ResumenPedido({ subtotal }) {
       </div>
       <div>
         <dt>Envío</dt>
-        <dd className={envio === 0 ? 'texto-verde' : ''}>{envio === 0 ? 'Gratis' : precioCop.format(envio)}</dd>
+        <dd className={envio === 0 ? 'texto-marca' : ''}>{envio === 0 ? 'Gratis' : precioCop.format(envio)}</dd>
       </div>
       <div className="resumen-total">
         <dt>Total</dt>

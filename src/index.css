@@ -3,29 +3,29 @@
    Todos los valores visuales salen de estos tokens.
    ========================================================= */
 :root {
-  /* Marca: verde fresco */
-  --verde-50: #effaf3;
-  --verde-100: #d9f2e2;
-  --verde-200: #b3e4c5;
-  --verde-500: #1f8a4c;
-  --verde-600: #17733f;
-  --verde-700: #125c33;
-  --verde-900: #0b3b21;
+  /* Marca: azul royal (confianza). Para cambiar de color basta con esta escala */
+  --marca-50: #eef4ff;
+  --marca-100: #dce7fe;
+  --marca-200: #bcd1fc;
+  --marca-500: #2563eb;
+  --marca-600: #1d4fd8;
+  --marca-700: #1e40af;
+  --marca-900: #172554;
 
   /* Acento: naranja (ofertas, alertas, contador) */
   --naranja-50: #fff4e8;
   --naranja-500: #f07f1f;
   --naranja-600: #d96a0c;
 
-  /* Neutros con un toque verde */
-  --tinta-900: #15211a;
-  --tinta-700: #3b4a41;
-  --tinta-500: #6a786f;
-  --tinta-300: #c7d0ca;
-  --tinta-200: #e2e8e4;
-  --tinta-100: #f0f3f1;
+  /* Neutros con un toque azul */
+  --tinta-900: #0f172a;
+  --tinta-700: #334155;
+  --tinta-500: #64748b;
+  --tinta-300: #cbd5e1;
+  --tinta-200: #e2e8f0;
+  --tinta-100: #f1f5f9;
   --blanco: #ffffff;
-  --fondo: #f6f7f4;
+  --fondo: #f6f8fb;
   --rojo-50: #fdecec;
   --rojo-500: #d64545;
 
@@ -34,10 +34,16 @@
   --color-texto-suave: var(--tinta-500);
   --color-borde: var(--tinta-200);
   --color-superficie: var(--blanco);
-  --color-primario: var(--verde-500);
-  --color-primario-hover: var(--verde-600);
+  --color-primario: var(--marca-500);
+  --color-primario-hover: var(--marca-600);
+  --color-primario-sombra: rgba(37, 99, 235, 0.55);
   --color-header: rgba(255, 255, 255, 0.88);
-  --anuncio-fondo: #0b3b21;
+  --anuncio-fondo: #172554;
+  --hero-desde: #1e3a8a;
+  --hero-hasta: #2563eb;
+  --hero-texto-suave: #dce7fe;
+  --sombra-producto: rgba(15, 23, 42, 0.15);
+  --fondo-modal: rgba(15, 23, 42, 0.5);
   color-scheme: light;
 
   /* Tipografía */
@@ -70,9 +76,9 @@
   --r-full: 999px;
 
   /* Sombras */
-  --sombra-sm: 0 1px 2px rgba(21, 33, 26, 0.06);
-  --sombra-md: 0 6px 18px -6px rgba(21, 33, 26, 0.14);
-  --sombra-lg: 0 18px 40px -12px rgba(21, 33, 26, 0.25);
+  --sombra-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --sombra-md: 0 6px 18px -6px rgba(15, 23, 42, 0.14);
+  --sombra-lg: 0 18px 40px -12px rgba(15, 23, 42, 0.25);
 
   /* Movimiento */
   --transicion: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -94,29 +100,30 @@
    los componentes no cambian.
    ========================================================= */
 :root[data-tema="oscuro"] {
-  --verde-50: #15291e;
-  --verde-100: #1c3a29;
-  --verde-200: #2b5a3f;
-  --verde-500: #2fa862;
-  --verde-600: #3dbb72;
-  --verde-700: #8fdcae;
-  --verde-900: #c9f0d8;
+  --marca-50: #121d36;
+  --marca-100: #1a2a4f;
+  --marca-200: #2a4178;
+  --marca-500: #2f6fe8;
+  --marca-600: #4a83f0;
+  --marca-700: #a9c5ff;
+  --marca-900: #dce7fe;
 
   --naranja-50: #3a2614;
 
-  --tinta-900: #eef3ef;
-  --tinta-700: #c3cec7;
-  --tinta-500: #8d9b92;
-  --tinta-300: #4a5850;
-  --tinta-200: #2a352f;
-  --tinta-100: #1d2621;
-  --fondo: #0f1512;
+  --tinta-900: #eef2f8;
+  --tinta-700: #c5cedb;
+  --tinta-500: #8b97aa;
+  --tinta-300: #475569;
+  --tinta-200: #263042;
+  --tinta-100: #1a2232;
+  --fondo: #0b111c;
   --rojo-50: #3a1c1c;
   --rojo-500: #f07070;
 
-  --color-superficie: #161e1a;
-  --color-header: rgba(15, 21, 18, 0.85);
-  --anuncio-fondo: #0a2416;
+  --color-superficie: #121a28;
+  --color-header: rgba(11, 17, 28, 0.85);
+  --anuncio-fondo: #0a1633;
+  --color-primario-sombra: rgba(0, 0, 0, 0.5);
 
   --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --sombra-md: 0 6px 18px -6px rgba(0, 0, 0, 0.6);
@@ -195,7 +202,7 @@ button:disabled {
 }
 
 :focus-visible {
-  outline: 3px solid var(--verde-200);
+  outline: 3px solid var(--marca-200);
   outline-offset: 2px;
 }
 
