@@ -1,7 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useSearchParams } from 'react-router'
 import { PackageSearch, RefreshCw, WifiOff } from 'lucide-react'
+import { useTienda } from '../context/TiendaContext'
+import { plural } from '../utils/formato'
+import { CATEGORIAS, enOferta, filtrarProductos } from '../utils/tienda'
 import ProductCard from './ProductCard'
-import { CATEGORIAS, categoriaDe, normalizar } from '../utils/tienda'
 
 const ORDENES = {
   relevancia: 'Destacados',
@@ -10,44 +13,41 @@ const ORDENES = {
   nombre: 'Nombre (A-Z)',
 }
 
-function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrito, agregarAlCarrito, disminuirDelCarrito }) {
-  const [categoria, setCategoria] = useState('Todos')
-  const [orden, setOrden] = useState('relevancia')
+function Catalogo({ verDetalle }) {
+  const { productos, estado, recargarProductos, enCarrito, agregar, restar } = useTienda()
+  const [params, setParams] = useSearchParams()
 
-  const visibles = useMemo(() => {
-    const texto = normalizar(busqueda.trim())
-    const filtrados = productos.filter(
-      (p) =>
-        (categoria === 'Todos' || categoriaDe(p) === categoria) &&
-        normalizar(p.nombre).includes(texto)
-    )
-    const ordenados = [...filtrados]
-    if (orden === 'precio-asc') ordenados.sort((a, b) => a.precio - b.precio)
-    if (orden === 'precio-desc') ordenados.sort((a, b) => b.precio - a.precio)
-    if (orden === 'nombre') ordenados.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
-    return ordenados
-  }, [productos, busqueda, categoria, orden])
+  // Filtros en la URL: se pueden compartir y sobreviven a recargar la página
+  const busqueda = params.get('q') ?? ''
+  const categoria = params.get('categoria') ?? 'Todos'
+  const orden = params.get('orden') ?? 'relevancia'
 
-  function limpiarFiltros() {
-    setCategoria('Todos')
-    setBusqueda('')
+  function cambiarFiltro(clave, valor, porDefecto) {
+    const nuevos = new URLSearchParams(params)
+    if (valor === porDefecto) nuevos.delete(clave)
+    else nuevos.set(clave, valor)
+    setParams(nuevos, { replace: true, preventScrollReset: true })
   }
+
+  const hayOfertas = productos.some(enOferta)
+  const categorias = ['Todos', ...(hayOfertas ? ['Ofertas'] : []), ...CATEGORIAS]
+
+  const visibles = useMemo(
+    () => filtrarProductos(productos, { busqueda, categoria, orden }),
+    [productos, busqueda, categoria, orden]
+  )
 
   return (
     <section id="catalogo" className="catalogo contenedor">
       <div className="catalogo-encabezado">
         <div>
-          <h2>Productos</h2>
-          {estado === 'listo' && (
-            <p className="texto-suave">
-              {visibles.length} {visibles.length === 1 ? 'producto' : 'productos'}
-            </p>
-          )}
+          <h2>{busqueda ? `Resultados para “${busqueda}”` : 'Productos'}</h2>
+          {estado === 'listo' && <p className="texto-suave">{plural(visibles.length, 'producto')}</p>}
         </div>
 
         <label className="selector">
           <span className="sr-only">Ordenar por</span>
-          <select value={orden} onChange={(e) => setOrden(e.target.value)}>
+          <select value={orden} onChange={(e) => cambiarFiltro('orden', e.target.value, 'relevancia')}>
             {Object.entries(ORDENES).map(([valor, texto]) => (
               <option key={valor} value={valor}>
                 {texto}
@@ -57,14 +57,13 @@ function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrit
         </label>
       </div>
 
-      <div className="chips" role="tablist" aria-label="Categorías">
-        {CATEGORIAS.map((c) => (
+      <div className="chips" role="group" aria-label="Categorías">
+        {categorias.map((c) => (
           <button
             key={c}
-            role="tab"
-            aria-selected={categoria === c}
-            className={`chip ${categoria === c ? 'activo' : ''}`}
-            onClick={() => setCategoria(c)}
+            aria-pressed={categoria === c}
+            className={`chip ${categoria === c ? 'activo' : ''} ${c === 'Ofertas' ? 'chip-oferta' : ''}`}
+            onClick={() => cambiarFiltro('categoria', c, 'Todos')}
           >
             {c}
           </button>
@@ -72,7 +71,7 @@ function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrit
       </div>
 
       {estado === 'cargando' && (
-        <ul className="grilla" aria-busy="true">
+        <ul className="grilla" aria-busy="true" aria-label="Cargando productos">
           {Array.from({ length: 8 }, (_, i) => (
             <li key={i} className="card card-esqueleto">
               <div className="esqueleto esqueleto-img" />
@@ -89,7 +88,7 @@ function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrit
           <WifiOff size={40} />
           <h3>No pudimos cargar los productos</h3>
           <p>Revisa que el servidor esté encendido e inténtalo de nuevo.</p>
-          <button className="boton boton-primario" onClick={reintentar}>
+          <button className="boton boton-primario" onClick={recargarProductos}>
             <RefreshCw size={16} /> Reintentar
           </button>
         </div>
@@ -100,7 +99,7 @@ function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrit
           <PackageSearch size={40} />
           <h3>No encontramos productos</h3>
           <p>Prueba con otra búsqueda o categoría.</p>
-          <button className="boton boton-secundario" onClick={limpiarFiltros}>
+          <button className="boton boton-secundario" onClick={() => setParams({}, { replace: true })}>
             Limpiar filtros
           </button>
         </div>
@@ -112,10 +111,10 @@ function Catalogo({ productos, estado, reintentar, busqueda, setBusqueda, carrit
             <ProductCard
               key={producto.id}
               producto={producto}
-              categoria={categoriaDe(producto)}
-              enCarrito={carrito.find((item) => item.id === producto.id)?.cantidad ?? 0}
-              agregarAlCarrito={agregarAlCarrito}
-              disminuirDelCarrito={disminuirDelCarrito}
+              enCarrito={enCarrito(producto.id)}
+              agregar={agregar}
+              restar={restar}
+              verDetalle={verDetalle}
             />
           ))}
         </ul>

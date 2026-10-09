@@ -3,7 +3,7 @@ import { ArrowRight, Leaf, ShieldCheck, Zap } from 'lucide-react'
 const beneficios = [
   { icono: Zap, texto: 'Entrega el mismo día' },
   { icono: Leaf, texto: 'Productos frescos' },
-  { icono: ShieldCheck, texto: 'Pago seguro' },
+  { icono: ShieldCheck, texto: 'Pagas al recibir' },
 ]
 
 function Hero() {
@@ -11,7 +11,7 @@ function Hero() {
     <section className="contenedor">
       <div className="hero">
         <div className="hero-texto">
-          <span className="hero-etiqueta">Ofertas de la semana</span>
+          <span className="hero-etiqueta">Tu supermercado en casa</span>
           <h1>
             Tu mercado del día, <span>a un clic</span>
           </h1>
@@ -33,10 +33,10 @@ function Hero() {
 
         <div className="hero-visual" aria-hidden="true">
           <div className="hero-circulo" />
-          <img src="Fotos/cafe.png" alt="" className="hero-producto p1" />
-          <img src="Fotos/leche.png" alt="" className="hero-producto p2" />
-          <img src="Fotos/doritos.png" alt="" className="hero-producto p3" />
-          <img src="Fotos/arroz.png" alt="" className="hero-producto p4" />
+          <img src="/Fotos/cafe.webp" alt="" className="hero-producto p1" />
+          <img src="/Fotos/leche.webp" alt="" className="hero-producto p2" />
+          <img src="/Fotos/doritos.webp" alt="" className="hero-producto p3" />
+          <img src="/Fotos/arroz.webp" alt="" className="hero-producto p4" />
           <div className="hero-sello">
             <strong>100%</strong>
             <span>frescos</span>

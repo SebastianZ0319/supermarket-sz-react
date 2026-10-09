@@ -1,14 +1,15 @@
+import { Link } from 'react-router'
+import Marca from './Marca'
+
 function Footer() {
   return (
     <footer className="footer">
       <div className="contenedor footer-contenido">
-        <div className="marca">
-          <img src="Fotos/Logo.png" alt="" className="marca-logo" />
-          <span className="marca-nombre">
-            Supermarket <strong>SZ</strong>
-          </span>
-        </div>
+        <Marca />
         <p className="texto-suave">© {new Date().getFullYear()} Supermarket SZ. Todos los derechos reservados.</p>
+        <Link to="/admin" className="footer-enlace">
+          Administración
+        </Link>
       </div>
     </footer>
   )

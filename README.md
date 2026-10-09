@@ -1,16 +1,51 @@
-# React + Vite
+# Supermarket SZ — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tienda en línea hecha con React + Vite. Se conecta al backend `supermarket-sz-backend` (Express + MySQL).
 
-Currently, two official plugins are available:
+## Funciones
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Catálogo con búsqueda, filtros por categoría, ofertas y orden (los filtros viven en la URL)
+- Detalle de producto en ventana modal (`/?producto=3`)
+- Carrito lateral con envío gratis desde $50.000; se guarda en el navegador
+- Checkout (`/checkout`): el stock se descuenta en el backend **solo al confirmar el pedido**
+- Panel de administración (`/admin`): productos (crear, editar, eliminar, stock) y pedidos (cambiar estado, cancelar)
+- Modo claro / oscuro y diseño adaptado a celular
 
-## React Compiler
+## Puesta en marcha
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Levanta el backend (ver su README) en `http://localhost:3000`.
+2. Copia la configuración y arranca:
 
-## Expanding the ESLint configuration
+```bash
+cp .env.example .env   # VITE_API_URL=http://localhost:3000
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Scripts
+
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Compila para producción en `dist/` |
+| `npm test` | Ejecuta las pruebas (Vitest + Testing Library) |
+| `npm run lint` | Revisa el código con ESLint |
+| `npm run imagenes` | Convierte los `.png` de `public/Fotos` a `.webp` cuadrados de 600×600 |
+
+## Estructura
+
+```
+src/
+  api/cliente.js          Llamadas al backend (usa VITE_API_URL)
+  context/                Estado global: tienda/carrito y tema
+  pages/                  Tienda, Checkout, Confirmación, Admin, 404
+  components/             Componentes de la tienda
+  components/admin/       Componentes del panel de administración
+  utils/                  Lógica pura (carrito, filtros, validaciones, formato)
+  styles/                 Estilos de checkout y admin
+  index.css               Sistema de diseño: colores, espaciado, tipografía, modo oscuro
+```
+
+## Agregar imágenes de productos
+
+Copia el `.png` a `public/Fotos/` y ejecuta `npm run imagenes`. Luego, en el panel de administración, usa la ruta `Fotos/nombre.webp`.

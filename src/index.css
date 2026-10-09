@@ -26,6 +26,7 @@
   --tinta-100: #f0f3f1;
   --blanco: #ffffff;
   --fondo: #f6f7f4;
+  --rojo-50: #fdecec;
   --rojo-500: #d64545;
 
   /* Roles semánticos */
@@ -35,6 +36,9 @@
   --color-superficie: var(--blanco);
   --color-primario: var(--verde-500);
   --color-primario-hover: var(--verde-600);
+  --color-header: rgba(255, 255, 255, 0.88);
+  --anuncio-fondo: #0b3b21;
+  color-scheme: light;
 
   /* Tipografía */
   --fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -85,6 +89,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* =========================================================
+   MODO OSCURO: se redefinen las escalas y los roles,
+   los componentes no cambian.
+   ========================================================= */
+:root[data-tema="oscuro"] {
+  --verde-50: #15291e;
+  --verde-100: #1c3a29;
+  --verde-200: #2b5a3f;
+  --verde-500: #2fa862;
+  --verde-600: #3dbb72;
+  --verde-700: #8fdcae;
+  --verde-900: #c9f0d8;
+
+  --naranja-50: #3a2614;
+
+  --tinta-900: #eef3ef;
+  --tinta-700: #c3cec7;
+  --tinta-500: #8d9b92;
+  --tinta-300: #4a5850;
+  --tinta-200: #2a352f;
+  --tinta-100: #1d2621;
+  --fondo: #0f1512;
+  --rojo-50: #3a1c1c;
+  --rojo-500: #f07070;
+
+  --color-superficie: #161e1a;
+  --color-header: rgba(15, 21, 18, 0.85);
+  --anuncio-fondo: #0a2416;
+
+  --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sombra-md: 0 6px 18px -6px rgba(0, 0, 0, 0.6);
+  --sombra-lg: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
 *,
 *::before,
 *::after {
@@ -100,6 +139,7 @@ html {
 
 body {
   background: var(--fondo);
+  transition: background 0.2s ease;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -138,7 +178,8 @@ ul {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
   color: inherit;
 }

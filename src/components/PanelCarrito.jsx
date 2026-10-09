@@ -1,22 +1,27 @@
 import { useEffect } from 'react'
-import { ShoppingBag, Truck, X } from 'lucide-react'
-import { precioCop } from '../utils/preciCop'
-import { COSTO_ENVIO, ENVIO_GRATIS_DESDE } from '../utils/tienda'
+import { useNavigate } from 'react-router'
+import { ArrowRight, ShoppingBag, X } from 'lucide-react'
+import { useTienda } from '../context/TiendaContext'
+import { precioCop, urlImagen } from '../utils/formato'
+import BarraEnvio from './BarraEnvio'
+import ResumenPedido from './ResumenPedido'
 import Stepper from './Stepper'
 
-function PanelCarrito({
-  abierto,
-  cerrar,
-  carrito,
-  productos,
-  subtotal,
-  cantidad,
-  agregarAlCarrito,
-  disminuirDelCarrito,
-  quitarDelCarrito,
-  vaciarCarrito,
-  pagar,
-}) {
+function PanelCarrito() {
+  const {
+    panelAbierto: abierto,
+    cerrarCarrito: cerrar,
+    carrito,
+    productos,
+    cantidad,
+    subtotal,
+    agregar,
+    restar,
+    quitar,
+    vaciar,
+  } = useTienda()
+  const navegar = useNavigate()
+
   // Bloquea el scroll de la página y permite cerrar con Escape
   useEffect(() => {
     if (!abierto) return
@@ -30,9 +35,11 @@ function PanelCarrito({
   }, [abierto, cerrar])
 
   const vacio = carrito.length === 0
-  const envioGratis = subtotal >= ENVIO_GRATIS_DESDE
-  const envio = vacio || envioGratis ? 0 : COSTO_ENVIO
-  const progreso = Math.min(100, (subtotal / ENVIO_GRATIS_DESDE) * 100)
+
+  function irAPagar() {
+    cerrar()
+    navegar('/checkout')
+  }
 
   return (
     <>
@@ -66,40 +73,20 @@ function PanelCarrito({
           </div>
         ) : (
           <>
-            <div className="envio">
-              <p>
-                <Truck size={16} aria-hidden="true" />
-                {envioGratis ? (
-                  <span>
-                    ¡Tienes <strong>envío gratis</strong>!
-                  </span>
-                ) : (
-                  <span>
-                    Te faltan <strong>{precioCop.format(ENVIO_GRATIS_DESDE - subtotal)}</strong> para envío gratis
-                  </span>
-                )}
-              </p>
-              <div className="envio-barra">
-                <div style={{ width: `${progreso}%` }} />
-              </div>
-            </div>
+            <BarraEnvio subtotal={subtotal} />
 
             <ul className="panel-lista">
               {carrito.map((item) => {
-                const stock = productos.find((p) => p.id === item.id)?.stock ?? 0
+                const stock = productos.find((p) => p.id === item.id)?.stock ?? item.cantidad
                 return (
                   <li key={item.id} className="item">
                     <div className="item-img">
-                      <img src={item.imagen} alt={item.nombre} />
+                      <img src={urlImagen(item.imagen)} alt="" />
                     </div>
                     <div className="item-info">
                       <div className="item-fila">
                         <span className="item-nombre">{item.nombre}</span>
-                        <button
-                          className="item-quitar"
-                          onClick={() => quitarDelCarrito(item.id)}
-                          aria-label={`Quitar ${item.nombre}`}
-                        >
+                        <button className="item-quitar" onClick={() => quitar(item.id)} aria-label={`Quitar ${item.nombre}`}>
                           <X size={16} />
                         </button>
                       </div>
@@ -109,9 +96,9 @@ function PanelCarrito({
                           compacto
                           nombre={item.nombre}
                           cantidad={item.cantidad}
-                          puedeSumar={stock > 0}
-                          sumar={() => agregarAlCarrito(item)}
-                          restar={() => disminuirDelCarrito(item.id)}
+                          puedeSumar={item.cantidad < stock}
+                          sumar={() => agregar(item)}
+                          restar={() => restar(item.id)}
                         />
                         <strong>{precioCop.format(item.precio * item.cantidad)}</strong>
                       </div>
@@ -122,26 +109,11 @@ function PanelCarrito({
             </ul>
 
             <div className="panel-pie">
-              <dl className="resumen">
-                <div>
-                  <dt>Subtotal</dt>
-                  <dd>{precioCop.format(subtotal)}</dd>
-                </div>
-                <div>
-                  <dt>Envío</dt>
-                  <dd className={envio === 0 ? 'texto-verde' : ''}>
-                    {envio === 0 ? 'Gratis' : precioCop.format(envio)}
-                  </dd>
-                </div>
-                <div className="resumen-total">
-                  <dt>Total</dt>
-                  <dd>{precioCop.format(subtotal + envio)}</dd>
-                </div>
-              </dl>
-              <button className="boton boton-primario boton-grande boton-bloque" onClick={pagar}>
-                Pagar {precioCop.format(subtotal + envio)}
+              <ResumenPedido subtotal={subtotal} />
+              <button className="boton boton-primario boton-grande boton-bloque" onClick={irAPagar}>
+                Ir a pagar <ArrowRight size={18} />
               </button>
-              <button className="boton-texto" onClick={vaciarCarrito}>
+              <button className="boton-texto" onClick={vaciar}>
                 Vaciar carrito
               </button>
             </div>

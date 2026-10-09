@@ -1,8 +1,11 @@
 import { ChevronRight, ShoppingBag } from 'lucide-react'
-import { precioCop } from '../utils/preciCop'
+import { useTienda } from '../context/TiendaContext'
+import { precioCop } from '../utils/formato'
 
 // Solo visible en celular y cuando hay productos en el carrito
-function BarraCarritoMovil({ cantidad, subtotal, abrirCarrito }) {
+function BarraCarritoMovil() {
+  const { cantidad, subtotal, abrirCarrito } = useTienda()
+
   return (
     <div className={`barra-movil ${cantidad > 0 ? 'visible' : ''}`}>
       <button onClick={abrirCarrito} tabIndex={cantidad > 0 ? 0 : -1}>
