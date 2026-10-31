@@ -1632,7 +1632,7 @@
 .aviso-demo code {
   padding: 0.05rem 0.35rem;
   border-radius: 4px;
-  background: var(--blanco);
+  background: var(--color-superficie);
   font-weight: 700;
 }
 .aviso-demo button {
