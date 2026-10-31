@@ -1615,3 +1615,37 @@
     gap: var(--e-2);
   }
 }
+
+/* Franja de la demo del portafolio */
+.aviso-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 0.75rem;
+  padding: 0.45rem 1rem;
+  background: var(--naranja-50);
+  color: var(--tinta-900);
+  font-size: var(--texto-xs);
+  text-align: center;
+}
+.aviso-demo code {
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  background: var(--blanco);
+  font-weight: 700;
+}
+.aviso-demo button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 0;
+  background: none;
+  color: var(--naranja-600);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.aviso-demo button:hover {
+  text-decoration: underline;
+}

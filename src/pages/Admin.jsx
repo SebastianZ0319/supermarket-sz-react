@@ -3,9 +3,10 @@ import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import { Toaster, toast } from 'sonner'
 import { ClipboardList, KeyRound, Loader2, LogOut, Package, Store } from 'lucide-react'
-import { api } from '../api/cliente'
+import { api, MODO_DEMO } from '../api/cliente'
 import { useTema } from '../context/TemaContext'
 import { useTienda } from '../context/TiendaContext'
+import AvisoDemo from '../components/AvisoDemo'
 import BotonTema from '../components/BotonTema'
 import Marca from '../components/Marca'
 import ProductosAdmin from '../components/admin/ProductosAdmin'
@@ -48,7 +49,15 @@ function Ingreso({ entrar }) {
           <KeyRound size={26} />
         </div>
         <h1>Panel de administración</h1>
-        <p className="texto-suave">Ingresa la clave ADMIN_KEY configurada en el .env del backend.</p>
+        <p className="texto-suave">
+          {MODO_DEMO ? (
+            <>
+              Estás en la demo: la clave es <strong>demo</strong>.
+            </>
+          ) : (
+            'Ingresa la clave ADMIN_KEY configurada en el .env del backend.'
+          )}
+        </p>
         <div className={`campo ${error ? 'con-error' : ''}`}>
           <label htmlFor="clave">Clave</label>
           <input
@@ -113,6 +122,7 @@ function Admin() {
   return (
     <>
       <Toaster position="top-center" richColors closeButton theme={tema === 'oscuro' ? 'dark' : 'light'} />
+      <AvisoDemo />
 
       {!clave ? (
         <Ingreso entrar={entrar} />

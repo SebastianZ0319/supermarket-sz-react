@@ -33,10 +33,10 @@ function Hero() {
 
         <div className="hero-visual" aria-hidden="true">
           <div className="hero-circulo" />
-          <img src="/Fotos/cafe.webp" alt="" className="hero-producto p1" />
-          <img src="/Fotos/leche.webp" alt="" className="hero-producto p2" />
-          <img src="/Fotos/doritos.webp" alt="" className="hero-producto p3" />
-          <img src="/Fotos/arroz.webp" alt="" className="hero-producto p4" />
+          <img src={`${import.meta.env.BASE_URL}Fotos/cafe.webp`} alt="" className="hero-producto p1" />
+          <img src={`${import.meta.env.BASE_URL}Fotos/leche.webp`} alt="" className="hero-producto p2" />
+          <img src={`${import.meta.env.BASE_URL}Fotos/doritos.webp`} alt="" className="hero-producto p3" />
+          <img src={`${import.meta.env.BASE_URL}Fotos/arroz.webp`} alt="" className="hero-producto p4" />
           <div className="hero-sello">
             <strong>100%</strong>
             <span>frescos</span>

@@ -1,12 +1,12 @@
-export const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '')
+import { ErrorApi } from './errores'
+import { api as apiDemo } from './demo'
 
-export class ErrorApi extends Error {
-  constructor(mensaje, estado, datos) {
-    super(mensaje)
-    this.estado = estado
-    this.datos = datos
-  }
-}
+export { ErrorApi }
+
+// Con VITE_DEMO=true (npm run build:demo) la tienda funciona sin backend, con datos en el navegador
+export const MODO_DEMO = import.meta.env.VITE_DEMO === 'true'
+
+export const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '')
 
 async function pedir(ruta, { metodo = 'GET', cuerpo, claveAdmin } = {}) {
   const headers = {}
@@ -30,7 +30,7 @@ async function pedir(ruta, { metodo = 'GET', cuerpo, claveAdmin } = {}) {
   return datos
 }
 
-export const api = {
+const apiReal = {
   productos: () => pedir('/productos'),
   crearPedido: (pedido) => pedir('/pedidos', { metodo: 'POST', cuerpo: pedido }),
 
@@ -43,3 +43,5 @@ export const api = {
     cambiarEstado: (clave, id, estado) => pedir(`/pedidos/${id}`, { metodo: 'PATCH', cuerpo: { estado }, claveAdmin: clave }),
   },
 }
+
+export const api = MODO_DEMO ? apiDemo : apiReal

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "nombre": "Caco-cacola",
+    "precio": 4500,
+    "stock": 5,
+    "imagen": "Fotos/coca-cola.webp",
+    "categoria": "Bebidas",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 2,
+    "nombre": "Doritos",
+    "precio": 8000,
+    "stock": 3,
+    "imagen": "Fotos/doritos.webp",
+    "categoria": "Snacks",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 3,
+    "nombre": "Gomitas",
+    "precio": 2000,
+    "stock": 11,
+    "imagen": "Fotos/gomitas.webp",
+    "categoria": "Snacks",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 4,
+    "nombre": "Papel",
+    "precio": 3000,
+    "stock": 2,
+    "imagen": "Fotos/papel.webp",
+    "categoria": "Aseo",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 5,
+    "nombre": "Cafe",
+    "precio": 9000,
+    "stock": 6,
+    "imagen": "Fotos/cafe.webp",
+    "categoria": "Bebidas",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 6,
+    "nombre": "Jabon",
+    "precio": 18000,
+    "stock": 7,
+    "imagen": "Fotos/jabon_loza.webp",
+    "categoria": "Aseo",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 7,
+    "nombre": "Crema dental",
+    "precio": 15000,
+    "stock": 4,
+    "imagen": "Fotos/crema_dental.webp",
+    "categoria": "Aseo",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 8,
+    "nombre": "Leche",
+    "precio": 5000,
+    "stock": 8,
+    "imagen": "Fotos/leche.webp",
+    "categoria": "Lácteos y carnes",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 9,
+    "nombre": "Arroz",
+    "precio": 12000,
+    "stock": 10,
+    "imagen": "Fotos/arroz.webp",
+    "categoria": "Despensa",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 10,
+    "nombre": "pasta",
+    "precio": 7000,
+    "stock": 5,
+    "imagen": "Fotos/pasta.webp",
+    "categoria": "Despensa",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 11,
+    "nombre": "Atun",
+    "precio": 6000,
+    "stock": 3,
+    "imagen": "Fotos/atun.webp",
+    "categoria": "Despensa",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 12,
+    "nombre": "Salchichas",
+    "precio": 8000,
+    "stock": 2,
+    "imagen": "Fotos/salchichas.webp",
+    "categoria": "Lácteos y carnes",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 13,
+    "nombre": "Fanta",
+    "precio": 5000,
+    "stock": 3,
+    "imagen": "Fotos/Fanta.png",
+    "categoria": "Bebidas",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 14,
+    "nombre": "Margaritas",
+    "precio": 6000,
+    "stock": 5,
+    "imagen": "Fotos/Margaritas.png",
+    "categoria": "Snacks",
+    "descripcion": null,
+    "precioAnterior": null
+  },
+  {
+    "id": 15,
+    "nombre": "Margaritas Sour Cream",
+    "precio": 7000,
+    "stock": 4,
+    "imagen": "Fotos/Margaritas_SourCream.png",
+    "categoria": "Snacks",
+    "descripcion": null,
+    "precioAnterior": null
+  }
+]

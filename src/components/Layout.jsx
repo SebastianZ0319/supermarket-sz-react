@@ -6,6 +6,7 @@ import Header from './Header'
 import Footer from './Footer'
 import PanelCarrito from './PanelCarrito'
 import BarraCarritoMovil from './BarraCarritoMovil'
+import AvisoDemo from './AvisoDemo'
 
 function Layout() {
   const { tema } = useTema()
@@ -20,6 +21,7 @@ function Layout() {
   return (
     <>
       <Toaster position="top-center" richColors closeButton theme={tema === 'oscuro' ? 'dark' : 'light'} />
+      <AvisoDemo />
       <Header />
       <main>
         <Outlet />

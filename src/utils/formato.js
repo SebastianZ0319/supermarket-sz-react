@@ -14,8 +14,8 @@ export function plural(cantidad, singular, pluralTexto = `${singular}s`) {
   return `${cantidad} ${cantidad === 1 ? singular : pluralTexto}`
 }
 
-// Las imágenes guardadas como "Fotos/x.webp" se sirven desde la raíz; las URL completas se dejan igual
+// Las imágenes guardadas como "Fotos/x.webp" se sirven desde public/; las URL completas se dejan igual
 export function urlImagen(imagen) {
-  if (!imagen) return '/favicon.png'
-  return /^(https?:)?\/\//.test(imagen) || imagen.startsWith('/') ? imagen : `/${imagen}`
+  if (!imagen) return `${import.meta.env.BASE_URL}favicon.png`
+  return /^(https?:)?\/\//.test(imagen) || imagen.startsWith('/') ? imagen : `${import.meta.env.BASE_URL}${imagen}`
 }
